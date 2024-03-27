@@ -14,7 +14,7 @@ def process_image(img, example_image):
     
     return processed_image, info
 
-examples = ["sample3.jpg", "sample4.jpg", "sample2.png"]
+examples = ["Example1.jpg", "Example2.jpg", "Example3.png"]
 dropdown = gr.Dropdown(choices=examples, label="Select an example image")
 image = gr.Image(label="Upload your own image")
 output_image = gr.Image(label="Processed Image")
