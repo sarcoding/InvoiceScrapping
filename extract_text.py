@@ -73,7 +73,6 @@ def extract_info(img=None, example_image=None):
     to_text = extract_to(img, blocks)
     amount_currency, amount_value = extract_amount(img, lines)
     gst_numbers = extract_gst_num(img, lines)
-    cv2.imwrite("test3.jpg", img=img)
     return {'to': to_text, 'amt_currency': amount_currency, 'amt_value': amount_value, 'gst_numbers': gst_numbers}, img
 
 if __name__ == "__main__":
