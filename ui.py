@@ -20,6 +20,6 @@ image = gr.Image(label="Upload your own image")
 output_image = gr.Image(label="Processed Image")
 output_text = gr.Textbox(label="Extracted Information")
 
-iface = gr.Interface(fn=process_image, inputs=[image, dropdown], outputs=[output_image, output_text], title="Image Processing")
+iface = gr.Interface(fn=process_image, inputs=[image, dropdown], outputs=[output_text, output_image], title="Image Processing")
 
 iface.launch()
