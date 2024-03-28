@@ -1,6 +1,6 @@
 import cv2
 import pytesseract
-import re
+
 
 pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 
@@ -10,7 +10,7 @@ def parse_line_blocks(img):
         return []
 
     img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-    boxes = pytesseract.image_to_data(img_rgb, output_type=pytesseract.Output.DICT)
+    boxes = pytesseract.image_to_data(img, output_type=pytesseract.Output.DICT)
     blocks = parse_blocks(img, boxes)
     lines = parse_lines(img, boxes)
     return lines, blocks

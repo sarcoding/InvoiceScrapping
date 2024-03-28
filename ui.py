@@ -3,7 +3,6 @@ import cv2
 from extract_text import extract_info
 
 def process_image(example_image=None, img=None):
-
     if img is not None:
         img = img[:, :, ::-1]
     if example_image is not None:
@@ -14,8 +13,8 @@ def process_image(example_image=None, img=None):
 
 examples = ["Example1.jpg", "Example2.jpg", "Example3.png"]
 dropdown = gr.Dropdown(choices=examples, label="Select an example image")
-image = gr.Image(label="Upload your own image")
-output_image = gr.Image(label="Processed Image")
+image = gr.Image(label="Upload your own image", value=None)
+output_image = gr.Image(label="Processed Image", value=None)
 output_text = gr.Textbox(label="Extracted Information")
 
 iface = gr.Interface(fn=process_image, inputs=[dropdown, image], outputs=[output_text, output_image], title="Image Processing")
