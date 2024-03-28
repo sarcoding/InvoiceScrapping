@@ -4,20 +4,6 @@ import re
 
 pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 
-def draw_boxes(img_path, blocks):
-    img = cv2.imread(img_path)
-    if img is None:
-        print("Error: Image not found")
-        return
-
-    for block in blocks:
-        left, top, right, bottom = block[2:6]
-        cv2.rectangle(img, (left, top), (right, bottom), (0, 255, 0), 2)  # Green rectangle
-
-    cv2.imshow('Bounding Boxes', img)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
-
 def parse_line_blocks(img):
     if img is None:
         print("Error: Image not found")
