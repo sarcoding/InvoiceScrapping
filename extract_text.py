@@ -2,7 +2,7 @@ import cv2
 import pytesseract
 import re
 import numpy as np
-from image_segmentation import parse_blocks, parse_lines
+from image_segmentation import parse_line_blocks
 
 pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 
@@ -67,15 +67,18 @@ def extract_info(img=None, example_image=None):
         return {'error': 'No image provided'}
     
     img = np.array(img)
-    lines = parse_lines(img=img)
-    blocks = parse_blocks(img=img)
+    lines, blocks = parse_line_blocks(img=img)
+    print("lines")
+    print(lines)
+    print(blocks)
+    
     
     to_text = extract_to(img, blocks)
     amount_currency, amount_value = extract_amount(img, lines)
     gst_numbers = extract_gst_num(img, lines)
-    return {'to': to_text, 'amt_currency': amount_currency, 'amt_value': amount_value, 'gst_numbers': gst_numbers}, img
+    return img, {'to': to_text, 'amt_currency': amount_currency, 'amt_value': amount_value, 'gst_numbers': gst_numbers}
 
 if __name__ == "__main__":
-    info = extract_info(cv2.imread("sample2.png"))
+    info, _ = extract_info(cv2.imread("Example1.jpg"))
 
     print(f"TO: {info['to']}, Amount Currency: {info['amt_currency']}, Amount Value: {info['amt_value']}, GSTINs: {info['gst_numbers']}")
