@@ -68,9 +68,6 @@ def extract_info(img=None, example_image=None):
     
     img = np.array(img)
     lines, blocks = parse_line_blocks(img=img)
-    print("lines")
-    print(lines)
-    print(blocks)
     
     
     to_text = extract_to(img, blocks)
