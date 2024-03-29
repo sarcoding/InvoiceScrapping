@@ -21,7 +21,6 @@ def extract_amount(img, lines):
     for i in range(len(lines)-1, 0, -1):
         match_amt = re.match(pattern_amt, lines[i][5], re.IGNORECASE)
         if match_amt:
-            # amount_text = lines[i][1]
             currency = match_amt.group(2) if match_amt.group(2) in valid_currencies else '₹'
             amount = float(match_amt.group(3).replace(',', ''))
             x1, y1, x2, y2 = lines[i][1:5]
@@ -55,8 +54,6 @@ def extract_to(img, blocks):
             left, top, right, bottom = blocks[i+1][1:5]
             cv2.putText(img, "To", (left, top-5), cv2.FONT_HERSHEY_COMPLEX, 2, (0, 0, 255), 2)
             cv2.rectangle(img, (left, top), (right, bottom), (0, 255, 0), 2)
-            # print("____"*20)
-            # print(i, len(blocks))
             return blocks[i+1][5]
     
     return "Not Found"
